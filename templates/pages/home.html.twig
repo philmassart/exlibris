@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Ma bibliothèque' %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Ma bibliothèque</h1>
+        <p>Tralala</p>
+    </div>
+    <div class="container">
+        <h2>Les derniers livres</h2>
+        <div class="row flex">
+            {% for book in books %}
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('book.show',{id: book.id, slug: book.slug}) }}"> {{ book.title }} </a>
+                        </h5>
+
+                            <p class="card-text">{{ book.author }}</p>
+                                <p class="card-text">{{ book.publisher }}, {{ book.year }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gérer ma bibliothèque' %}
+
+{% block body %}
+    <div class="container-mt-4">
+
+        <h1>Gérer les livres</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>
+                        <a href="{{ path('admin.book.edit', {id:book.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path('admin.book.delete', {id: book.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes-vous certain?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right">
+            <a href="{{ path('admin.book.new') }}" class="btn btn-primary">Créer un nouveau livre</a>
+        </div>
+
+
+    </div>
+
+
+
+
+
+{% endblock %}
