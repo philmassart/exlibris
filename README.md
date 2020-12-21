@@ -9,4 +9,3 @@ A ajouter:
 - "sous la direction de" ≠ auteur
 - lieu de rangement
 - prêt
-- mots-clés
