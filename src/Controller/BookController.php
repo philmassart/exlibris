@@ -2,9 +2,13 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\BookSearch;
+use App\Form\BookSearchType;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,10 +30,20 @@ class BookController extends AbstractController
      * @Route("/livres", name="book.index")
      * @return Response
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $search = new BookSearch();
+        $form = $this->createForm(BookSearchType::class, $search);
+        $form->handleRequest($request);
+
+        $books = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 4
+        );
         return $this->render('book/index.html.twig',[
-            'current_menu' => 'livres'
+            'current_menu' => 'books',
+            'books' => $books,
+            'form' => $form->createView()
         ]);
     }
 

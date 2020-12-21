@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraint as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
@@ -36,7 +39,7 @@ class Book
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $author;
+    private $author_last;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -48,9 +51,20 @@ class Book
      */
     private $created_at;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $author_first;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="books")
+     */
+    private $genres;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->genres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,14 +113,14 @@ class Book
         return $this;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthorlast(): ?string
     {
-        return $this->author;
+        return $this->author_last;
     }
 
-    public function setAuthor(?string $author): self
+    public function setAuthorlast(?string $author_last): self
     {
-        $this->author = $author;
+        $this->author_last = $author_last;
 
         return $this;
     }
@@ -131,6 +145,45 @@ class Book
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getAuthorFirst(): ?string
+    {
+        return $this->author_first;
+    }
+
+    public function setAuthorFirst(string $author_first): self
+    {
+        $this->author_first = $author_first;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Genre[]
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres[] = $genre;
+            $genre->addBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        if ($this->genres->removeElement($genre)) {
+            $genre->removeBook($this);
+        }
 
         return $this;
     }

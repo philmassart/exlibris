@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
+use App\Entity\Genre;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -68,6 +69,7 @@ class AdminBookController extends AbstractController {
      */
     public function edit(Book $book, Request $request)
     {
+
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 

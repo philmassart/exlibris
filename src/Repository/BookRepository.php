@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Book;
+use App\Entity\BookSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,13 +23,35 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Book[]
+     * @return Query
      */
-    public function findAllVisible(): array
+    public function findAllVisibleQuery(BookSearch $search): Query
     {
-        return $this->findVisibleQuery()
-            ->getQuery()
-            ->getResult();
+        $query =  $this->findVisibleQuery();
+
+        if ($search->getMaxYear()) {
+            $query = $query
+                ->andWhere('b.year <= :maxyear')
+                ->setParameter('maxyear', $search->getMaxYear());
+        }
+
+        if ($search->getMinYear()) {
+            $query = $query
+                ->andWhere('b.year >= :minyear')
+                ->setParameter('minyear', $search->getMinYear());
+        }
+
+        if ($search->getGenres()->count() >0 ) {
+            $k = 0;
+            foreach ($search->getGenres() as $genre) {
+                $k++;
+                $query = $query
+                    ->andWhere(":genre$k MEMBER OF b.genres")
+                    ->setParameter("genre$k", $genre);
+            }
+        }
+
+           return $query->getQuery();
     }
 
     /**

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Gérer ma bibliothèque' %}
+{% block title 'Gérer les genres' %}
 
 {% block body %}
     <div class="container-mt-4">
 
-        <h1>Gérer les livres</h1>
+        <h1>Gérer les genres</h1>
 
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
@@ -16,21 +16,19 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Titre</th>
-                <th>Auteur</th>
+                <th>Nom</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            {% for book in books %}
+            {% for genre in genres %}
                 <tr>
-                    <td>{{ book.title }}</td>
-                    <td>{{ book.authorfirst }} {{ book.authorlast }} </td>
+                    <td>{{ genre.name }}</td>
                     <td>
-                        <a href="{{ path('admin.book.edit', {id:book.id}) }}" class="btn btn-secondary">Editer</a>
-                        <form method="post" action="{{ path('admin.book.delete', {id: book.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes-vous certain?')">
+                        <a href="{{ path('admin.genre.edit', {id:genre.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path('admin.genre.delete', {id: genre.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes-vous certain?')">
                             <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ genre.id) }}">
                             <button class="btn btn-danger">Supprimer</button>
                         </form>
                     </td>
@@ -39,7 +37,7 @@
             </tbody>
         </table>
         <div class="text-right">
-            <a href="{{ path('admin.book.new') }}" class="btn btn-primary">Créer un nouveau livre</a>
+            <a href="{{ path('admin.genre.new') }}" class="btn btn-primary">Créer un nouveau genre</a>
         </div>
 
 
