@@ -3,3 +3,7 @@ Author last: Nom de l'auteur
 Author first: Prénom de l'auteur
 Publisher: Éditeur
 Year: Année
+Image file: Image
+
+genre:
+  Name: Nom

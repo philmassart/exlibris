@@ -2,13 +2,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
-use App\Entity\Genre;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -42,6 +40,8 @@ class AdminBookController extends AbstractController {
 
     /**
      * @Route("/admin/book/create", name="admin.book.new")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function new(Request $request)
     {
@@ -88,6 +88,7 @@ class AdminBookController extends AbstractController {
     /**
      * @Route ("/admin/book/{id}", name="admin.book.delete", methods="DELETE")
      * @param Book $book
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function delete(Book $book, Request $request)

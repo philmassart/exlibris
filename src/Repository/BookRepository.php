@@ -23,6 +23,7 @@ class BookRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param BookSearch $search
      * @return Query
      */
     public function findAllVisibleQuery(BookSearch $search): Query
