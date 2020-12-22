@@ -3,6 +3,8 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+
 
 class BookSearch {
 
@@ -22,6 +24,11 @@ class BookSearch {
      * @var ArrayCollection
      */
     private $genres;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $author_last;
 
     public function __construct()
     {
@@ -79,6 +86,27 @@ class BookSearch {
     {
         $this->genres = $genres;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthorlast(): ?string
+    {
+        return $this->author_last;
+    }
+
+    /**
+     * @param string|null $author_last
+     * @return $this
+     */
+    public function setAuthorlast(?string $author_last): self
+    {
+        $this->author_last = $author_last;
+
+        return $this;
+    }
+
+
 
 
 }

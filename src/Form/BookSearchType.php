@@ -2,11 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Book;
 use App\Entity\BookSearch;
 use App\Entity\Genre;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -35,7 +37,14 @@ class BookSearchType extends AbstractType
                 'label' => false,
                 'class' => Genre::class,
                 'choice_label' => 'name',
-                'multiple' => true
+                'multiple' => true,
+            ])
+            ->add('author_last', TextType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'myfield'
+                ]
             ])
         ;
     }

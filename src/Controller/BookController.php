@@ -38,7 +38,7 @@ class BookController extends AbstractController
 
         $books = $paginator->paginate(
             $this->repository->findAllVisibleQuery($search),
-            $request->query->getInt('page', 1), 4
+            $request->query->getInt('page', 1), 12
         );
         return $this->render('book/index.html.twig',[
             'current_menu' => 'books',

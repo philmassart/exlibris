@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Book;
 use App\Entity\Genre;
+use App\Repository\FeatureRepository;
+use App\Repository\GenreRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -25,7 +27,10 @@ class BookType extends AbstractType
                 'class' => Genre::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'required' => false
+                'required' => false,
+                'query_builder' => function (GenreRepository $genreRepository) {
+                    return $genreRepository->myFindAllBuilder();
+                }
             ])
             ->add('imageFile', FileType::class,[
                 'required' => false
