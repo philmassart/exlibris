@@ -15,6 +15,7 @@ class BookSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
             ->add('minYear', IntegerType::class, [
                 'required' => false,
                 'label' => false,

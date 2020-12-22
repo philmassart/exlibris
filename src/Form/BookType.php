@@ -30,6 +30,10 @@ class BookType extends AbstractType
             ->add('imageFile', FileType::class,[
                 'required' => false
             ])
+            ->add('city')
+            ->add('collection')
+            ->add('volume')
+            ->add('storage')
 
         ;
     }

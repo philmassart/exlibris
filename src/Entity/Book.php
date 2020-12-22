@@ -85,6 +85,26 @@ class Book
      */
     private $updated_at;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $collection;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $volume;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $storage;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
@@ -259,6 +279,54 @@ class Book
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getCollection(): ?string
+    {
+        return $this->collection;
+    }
+
+    public function setCollection(?string $collection): self
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    public function getVolume(): ?int
+    {
+        return $this->volume;
+    }
+
+    public function setVolume(?int $volume): self
+    {
+        $this->volume = $volume;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getStorage(): ?string
+    {
+        return $this->storage;
+    }
+
+    public function setStorage(?string $storage): self
+    {
+        $this->storage = $storage;
 
         return $this;
     }

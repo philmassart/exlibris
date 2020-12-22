@@ -4,6 +4,11 @@ Author first: Prénom de l'auteur
 Publisher: Éditeur
 Year: Année
 Image file: Image
+City: Ville
+Storage: Emplacement
+Volume: Volume - tome
+Collection: Collection
+Description: Description
 
-genre:
+Genre:
   Name: Nom

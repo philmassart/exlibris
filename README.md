@@ -1,11 +1,14 @@
 # exlibris
 Gestion de bibliothèque
 
+
+A corriger:
+- mise en page recherche
+- suppression genres et auteurs
+- liaison auteurs -> livres
+
+
 A ajouter: 
-- collection (chez l'éditeur)
-- tomes
 - édition (3e édition etc.)
-- ville d'édition
 - "sous la direction de" ≠ auteur
-- lieu de rangement
 - prêt

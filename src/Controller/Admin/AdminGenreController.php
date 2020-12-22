@@ -21,7 +21,7 @@ class AdminGenreController extends AbstractController
     public function index(GenreRepository $genreRepository): Response
     {
         return $this->render('/admin/genre/index.html.twig', [
-            'genres' => $genreRepository->findAll(),
+            'genres' => $genreRepository->myFindAll(),
         ]);
     }
 

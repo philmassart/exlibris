@@ -6,6 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class BookSearch {
 
+
     /**
      * @var int|null
      */

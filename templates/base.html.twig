@@ -26,8 +26,24 @@
                        aria-current="page" href="{{ path('book.index') }}">Voir mes livres</a>
                 </li>
             </ul>
-            {% if app.user %}
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link active {% if current_menu is defined and current_menu == 'books' %}active{% endif %} "
+                       aria-current="page" href="{{ path('admin.book.index') }}">Administration</a>
+                </li>
+            </ul>
 
+            {% if app.user %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ path('admin.author.index') }}" class="nav-link">Auteurs</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ path('admin.genre.index') }}" class="nav-link">Genres</a>
+                    </li>
+                </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
