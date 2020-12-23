@@ -30,17 +30,17 @@ class BookRepository extends ServiceEntityRepository
     {
         $query =  $this->findVisibleQuery();
 
-        if ($search->getMaxYear()) {
-            $query = $query
-                ->andWhere('b.year <= :maxyear')
-                ->setParameter('maxyear', $search->getMaxYear());
-        }
-
-        if ($search->getMinYear()) {
-            $query = $query
-                ->andWhere('b.year >= :minyear')
-                ->setParameter('minyear', $search->getMinYear());
-        }
+//        if ($search->getMaxYear()) {
+//            $query = $query
+//                ->andWhere('b.year <= :maxyear')
+//                ->setParameter('maxyear', $search->getMaxYear());
+//        }
+//
+//        if ($search->getMinYear()) {
+//            $query = $query
+//                ->andWhere('b.year >= :minyear')
+//                ->setParameter('minyear', $search->getMinYear());
+//        }
 
         if ($search->getGenres()->count() >0 ) {
             $k = 0;
@@ -50,6 +50,11 @@ class BookRepository extends ServiceEntityRepository
                     ->andWhere(":genre$k MEMBER OF b.genres")
                     ->setParameter("genre$k", $genre);
             }
+        }
+
+        if ($search->getAuthorlast())
+        {
+            $query->andWhere("b.author_last LIKE '%".$search->getAuthorlast()."%'");
         }
 
            return $query->getQuery();

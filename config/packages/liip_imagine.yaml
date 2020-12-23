@@ -4,14 +4,15 @@ liip_imagine:
         thumb:
             quality: 75
             filters:
-                thumbnail:
-                    size: [360, 230]
-                    mode: outbound
+                fixed:
+                    height: 230
+                    #size: [360, 230]
+                    #mode: outbound
         medium:
             quality: 75
             filters:
                 thumbnail:
-                    size: [ 600, 480 ]
+                    size: [ 480, 320 ]
                     mode: outbound
 
 

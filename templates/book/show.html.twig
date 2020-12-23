@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-8">
                     {% if book.filename %}
-                        <img src="{{ vich_uploader_asset(book, 'imageFile') | imagine_filter('medium') }}"
+                        <img src="{{ vich_uploader_asset(book, 'imageFile') | imagine_filter('thumb') }}"
                              alt="card-img-top" style="width: 100%; height: auto;">
                     {% else %}
                         <img src="{{ '/images/books/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top"

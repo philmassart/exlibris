@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Book;
 use App\Entity\BookSearch;
 use App\Entity\Genre;
+use App\Repository\GenreRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -18,34 +19,39 @@ class BookSearchType extends AbstractType
     {
         $builder
 
-            ->add('minYear', IntegerType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Année minimale'
-                ]
-            ])
-            ->add('maxYear', IntegerType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Année maximale'
-                ]
-            ])
             ->add('genres', EntityType::class, [
                 'required' => false,
                 'label' => false,
                 'class' => Genre::class,
                 'choice_label' => 'name',
                 'multiple' => true,
+                'query_builder' => function (GenreRepository $genreRepository) {
+                    return $genreRepository->myFindAllBuilder();
+                }
             ])
             ->add('author_last', TextType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'class' => 'myfield'
+                    'class' => 'myfield',
+                    'placeholder' => 'Nom'
                 ]
             ])
+            //
+//            ->add('minYear', IntegerType::class, [
+//                'required' => false,
+//                'label' => false,
+//                'attr' => [
+//                    'placeholder' => 'Année minimale'
+//                ]
+//            ])
+//            ->add('maxYear', IntegerType::class, [
+//                'required' => false,
+//                'label' => false,
+//                'attr' => [
+//                    'placeholder' => 'Année maximale'
+//                ]
+//            ])
         ;
     }
 
