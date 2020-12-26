@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -av ./ /Volumes/web/exlibris  --exclude-from=.gitignore --exclude=".*"

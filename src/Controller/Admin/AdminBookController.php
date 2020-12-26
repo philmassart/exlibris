@@ -1,16 +1,21 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
+use App\Entity\BookSearch;
+use App\Form\BookSearchType;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class AdminBookController extends AbstractController {
+class AdminBookController extends AbstractController
+{
 
     /**
      * @var  BookRepository
@@ -30,12 +35,28 @@ class AdminBookController extends AbstractController {
 
     /**
      * @Route("/admin", name="admin.book.index")
+     * @param BookRepository $bookRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index()
+    public function index(BookRepository $bookRepository, PaginatorInterface $paginator, Request $request)
     {
-        $books = $this->repository->findAll();
-        return $this->render('admin/book/index.html.twig', compact('books'));
+        //$books = $this->repository->findAll();
+        $search = new BookSearch();
+        $form = $this->createForm(BookSearchType::class, $search);
+        $form->handleRequest($request);
+
+        $books = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 12
+        );
+
+        return $this->render('admin/book/index.html.twig', [
+            'books' => $books,
+            'form' => $form->createView()
+
+        ]);
     }
 
     /**
@@ -82,7 +103,7 @@ class AdminBookController extends AbstractController {
         return $this->render('admin/book/edit.html.twig', [
             'book' => $book,
             'form' => $form->createView()
-            ]);
+        ]);
     }
 
     /**

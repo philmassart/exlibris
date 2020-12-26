@@ -7,7 +7,7 @@
     <div class="jumbotron">
         <div class="container mt-4">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     {% if book.filename %}
                         <img src="{{ vich_uploader_asset(book, 'imageFile') | imagine_filter('thumb') }}"
                              alt="card-img-top" style="width: 100%; height: auto;">
@@ -39,8 +39,20 @@
                             <td>{{ book.publisher }}</td>
                         </tr>
                         <tr>
-                            <td>Éditeur</td>
-                            <td>{{ book.publisher }}</td>
+                            <td>Collection</td>
+                            <td>{{ book.collection }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ville d'édition - année</td>
+                            <td>{{ book.city }} - {{ book.year }}</td>
+                        </tr>
+                        <tr>
+                            <td>Emplacement de stokage</td>
+                            <td>{{ book.storage }}</td>
+                        </tr>
+                        <tr>
+                            <td>Prêté à</td>
+                            <td>{{ book.lendedto }}</td>
                         </tr>
                     </table>
                 </div>

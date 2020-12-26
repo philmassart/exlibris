@@ -3,26 +3,23 @@
 {% block title 'Voir tous mes livres' %}
 
 {% block body %}
-    <div class="jumbotron">
+    <div class="jumbotron jumbotron-fluid">
         <div class="container">
             {{ form_start(form) }}
-            <div class="form-row align-items-end">
-{#                <div class="col">#}
-{#                    {{ form_row(form.minYear) }}#}
-{#                </div>#}
-{#                <div class="col">#}
-{#                    {{ form_row(form.maxYear) }}#}
-{#                </div>#}
+            <div class="row align-item-end">
                 <div class="col">
                     {{ form_row(form.author_last) }}
                 </div>
                 <div class="col">
-                    {{ form_row(form.genres) }}
+                    {{ form_row(form.title) }}
                 </div>
                 <div class="col">
-                    <div class="form-group">
-                        <button class="btn btn-primary">Rechercher</button>
-                    </div>
+                    {{ form_row(form.genres) }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <button class="btn btn-primary">Rechercher</button>
                 </div>
             </div>
             {{ form_end(form) }}
@@ -34,7 +31,7 @@
 
         <div class="row">
             {% for book in books %}
-                <div class="col-md-4">
+                <div class="col-md-3">
                     {% include 'book/_book.html.twig' %}
                 </div>
             {% endfor %}

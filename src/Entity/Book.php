@@ -27,7 +27,7 @@ class Book
 
     /**
      * @var string|null
-     * @ORM\Column (type="string", length=255)
+     * @ORM\Column (type="string", length=255, nullable=true)
      */
     private $filename;
 
@@ -71,7 +71,7 @@ class Book
     private $created_at;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $author_first;
 
@@ -81,7 +81,7 @@ class Book
     private $genres;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
 
@@ -104,6 +104,16 @@ class Book
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $storage;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $isbn;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lendedto;
 
     public function __construct()
     {
@@ -330,6 +340,31 @@ class Book
 
         return $this;
     }
+
+    public function getIsbn(): ?int
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(?int $isbn): self
+    {
+        $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    public function getLendedTo(): ?string
+    {
+        return $this->lendedto;
+    }
+
+    public function setLendedTo(?string $lendedto): self
+    {
+        $this->lendedto = $lendedto;
+
+        return $this;
+    }
+
 
 
 }

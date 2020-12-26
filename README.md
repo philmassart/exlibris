@@ -4,7 +4,6 @@ Gestion de bibliothèque
 
 A corriger:
 - mise en page recherche
-- suppression genres et auteurs
 - liaison auteurs -> livres
 
 

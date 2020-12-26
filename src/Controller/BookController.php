@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Book;
@@ -40,7 +41,7 @@ class BookController extends AbstractController
             $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1), 12
         );
-        return $this->render('book/index.html.twig',[
+        return $this->render('book/index.html.twig', [
             'current_menu' => 'books',
             'books' => $books,
             'form' => $form->createView()
@@ -54,7 +55,7 @@ class BookController extends AbstractController
     public function show(Book $book, string $slug): Response
     {
         if ($book->getSlug() !== $slug) {
-            return $this->redirectToRoute('book.show',[
+            return $this->redirectToRoute('book.show', [
                 'id' => $book->getId(),
                 'slug' => $book->getSlug()
             ], 301);

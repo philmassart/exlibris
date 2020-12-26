@@ -57,7 +57,16 @@ class BookRepository extends ServiceEntityRepository
             $query->andWhere("b.author_last LIKE '%".$search->getAuthorlast()."%'");
         }
 
+        if ($search->getTitle())
+        {
+            $query->andWhere("b.title LIKE '%".$search->getTitle()."%'");
+        }
+
+
+
+
            return $query->getQuery();
+
     }
 
     /**
@@ -77,7 +86,33 @@ class BookRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('b')
             ;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function myFindAll()
+    {
+        return $this->myFindAllBuilder()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function myFindAllBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('b')
+            ->select('b')
+            ->orderBy('b.title', 'ASC');
+    }
+
+
+
 }
+
+
 
 // /**
 //  * @return Book[] Returns an array of Book objects

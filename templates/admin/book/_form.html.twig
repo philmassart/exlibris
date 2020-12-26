@@ -1,8 +1,8 @@
 {{ form_start(form) }}
 <div class="row">
     <div class="col-md-4">{{ form_row(form.title) }}</div>
-    <div class="col-md-4">{{ form_row(form.author_last) }}</div>
     <div class="col-md-4">{{ form_row(form.author_first) }}</div>
+    <div class="col-md-4">{{ form_row(form.author_last) }}</div>
 </div>
 <div class="row">
     <div class="col-md-4">{{ form_row(form.publisher) }}</div>
@@ -13,6 +13,10 @@
     <div class="col-md-4">{{ form_row(form.collection) }}</div>
     <div class="col-md-4">{{ form_row(form.volume) }}</div>
     <div class="col-md-4">{{ form_row(form.storage) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-4">{{ form_row(form.isbn) }}</div>
+    <div class="col-md-4">{{ form_row(form.lendedto) }}</div>
     <div class="col-md-4">{{ form_row(form.imageFile) }}</div>
 </div>
 {{ form_rest(form) }}

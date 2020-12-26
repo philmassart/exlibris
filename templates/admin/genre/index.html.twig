@@ -13,6 +13,10 @@
             </div>
         {% endfor %}
 
+        <div class="text-right">
+            <a href="{{ path('admin.genre.new') }}" class="btn btn-primary">Créer un nouveau genre</a>
+        </div>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -36,9 +40,7 @@
             {% endfor %}
             </tbody>
         </table>
-        <div class="text-right">
-            <a href="{{ path('admin.genre.new') }}" class="btn btn-primary">Créer un nouveau genre</a>
-        </div>
+
 
 
     </div>

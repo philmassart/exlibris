@@ -17,15 +17,26 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('year')
-            ->add('author_last')
-            ->add('author_first')
-            ->add('publisher')
+            ->add('title', null, [
+                'label' => "form.title"
+            ])
+            ->add('year', null, [
+                'label' => "form.year"
+            ])
+            ->add('author_last', null, [
+                'label' => "form.authorlast"
+            ])
+            ->add('author_first', null, [
+                'label' => "form.authorfirst"
+            ])
+            ->add('publisher', null, [
+                'label' => "form.publisher"
+            ])
             ->add('description')
             ->add('genres', EntityType::class, [
                 'class' => Genre::class,
                 'choice_label' => 'name',
+                'label' => "form.genre",
                 'multiple' => true,
                 'required' => false,
                 'query_builder' => function (GenreRepository $genreRepository) {
@@ -33,13 +44,27 @@ class BookType extends AbstractType
                 }
             ])
             ->add('imageFile', FileType::class,[
-                'required' => false
+                'required' => false,
+                'label' => "form.image file"
             ])
-            ->add('city')
+            ->add('city', null, [
+                'label' => "form.city"
+            ])
             ->add('collection')
-            ->add('volume')
-            ->add('storage')
+            ->add('volume', null, [
+                'label' => "form.volume"
+            ])
+            ->add('storage', null, [
+                'label' => "form.storage"
+            ])
 
+            ->add('isbn', null, [
+                'label' => "form.isbn"
+            ])
+
+            ->add('lendedto', null, [
+                'label' => "form.lendedto"
+            ])
         ;
     }
 
@@ -47,7 +72,6 @@ class BookType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Book::class,
-            'translation_domain' => 'forms'
         ]);
     }
 }

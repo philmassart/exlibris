@@ -21,7 +21,7 @@ class BookSearchType extends AbstractType
 
             ->add('genres', EntityType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => "Genres",
                 'class' => Genre::class,
                 'choice_label' => 'name',
                 'multiple' => true,
@@ -31,10 +31,18 @@ class BookSearchType extends AbstractType
             ])
             ->add('author_last', TextType::class, [
                 'required' => false,
-                'label' => false,
+                'label' => "Auteur",
                 'attr' => [
                     'class' => 'myfield',
                     'placeholder' => 'Nom'
+                ]
+            ])
+            ->add('title', TextType::class, [
+                'required' => false,
+                'label' => "Titre",
+                'attr' => [
+                    'class' => 'myfield',
+                    'placeholder' => 'Titre'
                 ]
             ])
             //

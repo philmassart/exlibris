@@ -1,0 +1,16 @@
+form:
+  title: Titre
+  authorlast: Nom de l'auteur
+  authorfirst: Prénom de l'auteur
+  publisher: Éditeur
+  year: Année
+  image file: Image
+  city: Ville
+  storage: Emplacement
+  volume: Volume - tome
+  collection: Collection
+  description: Description
+  name: Nom
+  genre: Genre
+  isbn: ISBN
+  lendedto: Prêté à

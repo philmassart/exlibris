@@ -4,10 +4,11 @@ liip_imagine:
         thumb:
             quality: 75
             filters:
-                fixed:
-                    height: 230
-                    #size: [360, 230]
-                    #mode: outbound
+                thumbnail:
+                    size: [360, 230]
+                    mode: outbound
+                    allow_upscale: true
+                    allow_downscale: true
         medium:
             quality: 75
             filters:
