@@ -6,14 +6,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('home') }}">Biblio</a>
+        <a class="navbar-brand" href="{{ path('admin.book.index') }}">Biblio</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,29 +21,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active {% if current_menu is defined and current_menu == 'books' %}active{% endif %} "
-                       aria-current="page" href="{{ path('book.index') }}">Voir mes livres</a>
+                    <a class="nav-link"
+                       aria-current="page" href="{{ path('admin.book.index') }}">Voir mes livres</a>
                 </li>
-            </ul>
-            <ul class="navbar-nav ">
                 <li class="nav-item">
-                    <a class="nav-link active {% if current_menu is defined and current_menu == 'books' %}active{% endif %} "
-                       aria-current="page" href="{{ path('admin.book.index') }}">Administration</a>
+                    <a class="nav-link"
+                       aria-current="page" href="{{ path('admin.book.new') }}">Nouveau livre</a>
                 </li>
             </ul>
-
-            {% if app.user %}
+            {% if is_granted('ROLE_SUPERADMIN') %}
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a href="{{ path('admin.genre.index') }}" class="nav-link">Genres</a>
                     </li>
                 </ul>
+            {% endif %}
+
+            {% if app.user %}
                 <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">{{ app.user.username }}</a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
                     </li>
                 </ul>
-
             {% endif %}
         </div>
     </div>

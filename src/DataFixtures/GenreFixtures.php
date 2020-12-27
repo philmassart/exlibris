@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Controller\Admin\AdminGenreController;
 use App\Entity\Genre;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;

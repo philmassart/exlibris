@@ -3,41 +3,27 @@
 {% block title 'Voir tous mes livres' %}
 
 {% block body %}
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            {{ form_start(form) }}
-            <div class="row align-item-end">
-                <div class="col">
-                    {{ form_row(form.author_last) }}
-                </div>
-                <div class="col">
-                    {{ form_row(form.title) }}
-                </div>
-                <div class="col">
-                    {{ form_row(form.genres) }}
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <button class="btn btn-primary">Rechercher</button>
-                </div>
-            </div>
-            {{ form_end(form) }}
-        </div>
-    </div>
 
     <div class="container mt-4">
-        <h1>Voir tous mes livres</h1>
-
         <div class="row">
-            {% for book in books %}
-                <div class="col-md-3">
-                    {% include 'book/_book.html.twig' %}
+            <div class="col-md-3">
+                <h3>Actions</h3>
+                <a href="{{ path('admin.book.new') }}" class="btn btn-primary">Nouveau livre</a>
+                {% include 'book/_search.html.twig' %}
+            </div>
+            <div class="col-md-9">
+                <h3>Mes livres</h3>
+                <div class="pagination">
+                    {{ knp_pagination_render(books) }}
                 </div>
-            {% endfor %}
-        </div>
-        <div class="pagination">
-            {{ knp_pagination_render(books) }}
+                <div class="row">
+                    {% for book in books %}
+                        <div class="col-md-3">
+                            {% include 'book/_book.html.twig' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -140,4 +140,16 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
+
+    public function addRole(string $role = null)
+    {
+        if ($role) {
+            if (!in_array($role, $this->roles))
+            {
+                $this->roles[] = $role;
+            }
+        }
+
+        return $this;
+    }
 }

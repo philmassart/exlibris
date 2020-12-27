@@ -13,10 +13,10 @@ class SecurityController extends AbstractController
      *     name="login"
      * )
      */
-    public function login(AuthenticationUtils $authenticationUtils): R
+    public function login(AuthenticationUtils $authenticationUtils)
     {
         if ($this->getUser())
-            $this->redirectToRoute('home');
+            $this->redirectToRoute('admin.home');
 
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();

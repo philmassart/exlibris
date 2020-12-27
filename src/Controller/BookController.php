@@ -28,26 +28,9 @@ class BookController extends AbstractController
     }
 
     /**
-     * @Route (
-     *     "/admin/home",
-     *     name="home"
-     * )
-     *
-     * @param BookRepository $repository
-     * @return Response
-     */
-    public function dashboard(BookRepository $repository): Response
-    {
-        $books = $repository->findLatest();
-        return $this->render('pages/home.html.twig', [
-            'books' => $books
-        ]);
-    }
-
-    /**
      * @Route(
      *     "admin/livres",
-     *     name="book.index"
+     *     name="admin.book.index"
      * )
      *
      * @return Response
@@ -72,7 +55,7 @@ class BookController extends AbstractController
     /**
      * @Route(
      *     "/admin/livres/{slug}-{id}",
-     *     name="book.show",
+     *     name="admin.book.show",
      *      requirements={"slug": "[a-z0-9\-]*"}
      * )
      *
@@ -140,6 +123,7 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
             $this->addFlash('success', 'Modifié avec succès');
+            return $this->redirectToRoute('admin.book.index');
             return $this->redirectToRoute('admin.book.index');
         }
 
