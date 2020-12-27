@@ -106,7 +106,7 @@ class Book
     private $storage;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $isbn;
 
