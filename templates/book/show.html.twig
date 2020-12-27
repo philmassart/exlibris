@@ -2,7 +2,6 @@
 
 {% block title book.title %}
 
-
 {% block body %}
     <div class="jumbotron">
         <div class="container mt-4">
@@ -15,8 +14,6 @@
                         <img src="{{ '/images/books/empty.jpg' | imagine_filter('thumb') }}" alt="card-img-top"
                              tyle="width: 100%; height: auto;">
                     {% endif %}
-
-
                 </div>
                 <div class="col-md-4">
                     <h1>{{ book.title }}</h1>
@@ -68,8 +65,6 @@
 
             </div>
         </div>
-
-
     </div>
 {% endblock %}
 

@@ -5,13 +5,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController extends AbstractController{
-
+class SecurityController extends AbstractController
+{
     /**
-     * @Route("/login", name="login")
+     * @Route(
+     *     "/",
+     *     name="login"
+     * )
      */
-    public function login(AuthenticationUtils $authenticationUtils)
+    public function login(AuthenticationUtils $authenticationUtils): R
     {
+        if ($this->getUser())
+            $this->redirectToRoute('home');
+
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('security/login.html.twig',[
