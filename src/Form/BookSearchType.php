@@ -50,7 +50,7 @@ class BookSearchType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-primary mt-2'
                 ],
-                'label' => 'rechercher'
+                'label' => 'Lancer la recherche'
             ])
             //
 //            ->add('minYear', IntegerType::class, [
