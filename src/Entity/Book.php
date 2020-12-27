@@ -115,6 +115,11 @@ class Book
      */
     private $lendedto;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
@@ -361,6 +366,18 @@ class Book
     public function setLendedTo(?string $lendedto): self
     {
         $this->lendedto = $lendedto;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
