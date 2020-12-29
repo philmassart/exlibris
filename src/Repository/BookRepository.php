@@ -4,10 +4,12 @@ namespace App\Repository;
 
 use App\Entity\Book;
 use App\Entity\BookSearch;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
  * @method Book|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,9 +28,9 @@ class BookRepository extends ServiceEntityRepository
      * @param BookSearch $search
      * @return Query
      */
-    public function findAllVisibleQuery(BookSearch $search): Query
+    public function findAllVisibleQuery(User $user, BookSearch $search): Query
     {
-        $query = $this->findVisibleQuery();
+        $query = $this->findVisibleQuery($user);
 
 //        if ($search->getMaxYear()) {
 //            $query = $query
@@ -64,7 +66,6 @@ class BookRepository extends ServiceEntityRepository
             $query->andWhere("b.storage LIKE '%" . $search->getStorage() . "%'");
         }
 
-
         return $query->getQuery();
 
     }
@@ -81,9 +82,11 @@ class BookRepository extends ServiceEntityRepository
     }
 
 
-    private function findVisibleQuery(): QueryBuilder
+    private function findVisibleQuery(User $user): QueryBuilder
     {
-        return $this->createQueryBuilder('b');
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.user = :user')
+            ->setParameter('user', $user);
     }
 
 
