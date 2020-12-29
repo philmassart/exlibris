@@ -20,9 +20,11 @@
                     <h1>{{ book.title }}</h1>
                     <h2>{{ book.authorfirst }} {{ book.authorlast }}</h2>
                     <h2>{{ book.publisher }}, {{ book.year }}</h2>
+                    <a href="{{ path('admin.book.edit', {id:book.id}) }}" class="btn btn-primary">Editer</a>
                 </div>
             </div>
         </div>
+    </div>
 
         <div class="container" mt-4>
             <p>
@@ -63,10 +65,13 @@
                         {% endfor %}
                     </ul>
                 </div>
-
+                <form method="post" action="{{ path('admin.book.delete', {id: book.id}) }}"
+                      style="display: inline-block" onsubmit="return confirm('Etes-vous certain?')">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
+                    <button class="btn btn-danger">Supprimer</button>
             </div>
         </div>
-    </div>
 {% endblock %}
 
 

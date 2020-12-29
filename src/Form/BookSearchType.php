@@ -19,7 +19,6 @@ class BookSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
             ->add('genres', EntityType::class, [
                 'required' => false,
                 'label' => "Genres",
@@ -44,6 +43,14 @@ class BookSearchType extends AbstractType
                 'attr' => [
                     'class' => 'myfield',
                     'placeholder' => 'Titre'
+                ]
+            ])
+            ->add('storage', TextType::class, [
+                'required' => false,
+                'label' => "Emplacement",
+                'attr' => [
+                    'class' => 'myfield',
+                    'placeholder' => 'Emplacement'
                 ]
             ])
             ->add('submit', SubmitType::class, [

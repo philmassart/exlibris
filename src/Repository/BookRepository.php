@@ -28,7 +28,7 @@ class BookRepository extends ServiceEntityRepository
      */
     public function findAllVisibleQuery(BookSearch $search): Query
     {
-        $query =  $this->findVisibleQuery();
+        $query = $this->findVisibleQuery();
 
 //        if ($search->getMaxYear()) {
 //            $query = $query
@@ -42,7 +42,7 @@ class BookRepository extends ServiceEntityRepository
 //                ->setParameter('minyear', $search->getMinYear());
 //        }
 
-        if ($search->getGenres()->count() >0 ) {
+        if ($search->getGenres()->count() > 0) {
             $k = 0;
             foreach ($search->getGenres() as $genre) {
                 $k++;
@@ -52,20 +52,20 @@ class BookRepository extends ServiceEntityRepository
             }
         }
 
-        if ($search->getAuthorlast())
-        {
-            $query->andWhere("b.author_last LIKE '%".$search->getAuthorlast()."%'");
+        if ($search->getAuthorlast()) {
+            $query->andWhere("b.author_last LIKE '%" . $search->getAuthorlast() . "%'");
         }
 
-        if ($search->getTitle())
-        {
-            $query->andWhere("b.title LIKE '%".$search->getTitle()."%'");
+        if ($search->getTitle()) {
+            $query->andWhere("b.title LIKE '%" . $search->getTitle() . "%'");
+        }
+
+        if ($search->getStorage()) {
+            $query->andWhere("b.storage LIKE '%" . $search->getStorage() . "%'");
         }
 
 
-
-
-           return $query->getQuery();
+        return $query->getQuery();
 
     }
 
@@ -81,10 +81,9 @@ class BookRepository extends ServiceEntityRepository
     }
 
 
-    private function findVisibleQuery():QueryBuilder
+    private function findVisibleQuery(): QueryBuilder
     {
-        return $this->createQueryBuilder('b')
-            ;
+        return $this->createQueryBuilder('b');
     }
 
 
@@ -107,7 +106,6 @@ class BookRepository extends ServiceEntityRepository
             ->select('b')
             ->orderBy('b.title', 'ASC');
     }
-
 
 
 }

@@ -11,8 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin6833/genre")
+ * @Route("/admin/genre")
  */
+//ou admin6833 si superadmin
 class GenreController extends AbstractController
 {
     /**
@@ -73,7 +74,7 @@ class GenreController extends AbstractController
      */
     public function delete(Request $request, Genre $genre): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$genre->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $genre->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($genre);
             $entityManager->flush();

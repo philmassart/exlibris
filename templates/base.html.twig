@@ -29,7 +29,7 @@
                        aria-current="page" href="{{ path('admin.book.new') }}">Nouveau livre</a>
                 </li>
             </ul>
-            {% if is_granted('ROLE_SUPERADMIN') %}
+            {% if is_granted('ROLE_ADMIN') %} {#OU SUPERADMIN#}
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a href="{{ path('admin.genre.index') }}" class="nav-link">Genres</a>

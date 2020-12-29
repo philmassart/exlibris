@@ -22,6 +22,10 @@ class BookSearch
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $title;
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $storage;
 
 
     /**
@@ -96,6 +100,26 @@ class BookSearch
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+
+    /**
+     * @return string|null
+     */
+    public function getStorage(): ?string
+    {
+        return $this->storage;
+    }
+
+    /**
+     * @param string|null $storage
+     * @return $this
+     */
+    public function setStorage(?string $storage): self
+    {
+        $this->storage = $storage;
 
         return $this;
     }

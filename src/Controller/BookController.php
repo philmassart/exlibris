@@ -124,8 +124,10 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
             $this->addFlash('success', 'Modifié avec succès');
-            return $this->redirectToRoute('admin.book.index');
-            return $this->redirectToRoute('admin.book.index');
+            return $this->redirectToRoute('admin.book.show', [
+                'id' => $book->getId(),
+                'slug' => $book->getSlug()
+            ], 301);
         }
 
         return $this->render('admin/book/edit.html.twig', [
