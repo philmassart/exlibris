@@ -1,5 +1,5 @@
 # exlibris
-Gestion de bibliothèque
+Gestion de bibliothèque multi-utilisateurs
 
 
 A corriger:

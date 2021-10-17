@@ -9,6 +9,7 @@
 /vendor/
 /public/images
 /public/media
+composer
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
