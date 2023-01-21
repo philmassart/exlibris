@@ -16,14 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends AbstractController
 {
-    /**
-     * @var BookRepository
-     */
-    private $repository;
-
-    public function __construct(BookRepository $repository, EntityManagerInterface $em)
+    public function __construct(private readonly BookRepository $repository, EntityManagerInterface $em)
     {
-        $this->repository = $repository;
         $this->em = $em;
     }
 
@@ -32,8 +26,6 @@ class BookController extends AbstractController
      *     "admin/livres",
      *     name="admin.book.index"
      * )
-     *
-     * @return Response
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
@@ -59,8 +51,6 @@ class BookController extends AbstractController
      *     name="admin.book.show",
      *      requirements={"slug": "[a-z0-9\-]*"}
      * )
-     *
-     * @return Response
      */
     public function show(Book $book, string $slug): Response
     {
@@ -81,11 +71,8 @@ class BookController extends AbstractController
      *     "/admin/book/create",
      *     name="admin.book.new"
      * )
-     *
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function new(Request $request)
+    public function new(Request $request): \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
     {
         $book = new Book();
         $book->setUser($this->getUser());
@@ -111,8 +98,6 @@ class BookController extends AbstractController
      *     methods="GET|POST"
      * )
      *
-     * @param Book $book
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(Book $book, Request $request)
@@ -143,8 +128,6 @@ class BookController extends AbstractController
      *     methods="DELETE"
      * )
      *
-     * @param Book $book
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function delete(Book $book, Request $request)

@@ -24,10 +24,6 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-    /**
-     * @param BookSearch $search
-     * @return Query
-     */
     public function findAllVisibleQuery(User $user, BookSearch $search): Query
     {
         $query = $this->findVisibleQuery($user);
@@ -100,9 +96,6 @@ class BookRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /**
-     * @return QueryBuilder
-     */
     public function myFindAllBuilder(): QueryBuilder
     {
         return $this->createQueryBuilder('b')

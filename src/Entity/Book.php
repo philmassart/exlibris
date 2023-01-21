@@ -32,99 +32,97 @@ class Book
     private $id;
 
     /**
-     * @var string|null
      * @ORM\Column (type="string", length=255, nullable=true)
      */
-    private $filename;
+    private ?string $filename = null;
 
     /**
-     * @var File|null
      * @Assert\Image(
      *     mimeTypes="image/jpeg"
      * )
      * @Vich\UploadableField(mapping="book_image", fileNameProperty="filename")
      */
-    private $imageFile;
+    private ?\Symfony\Component\HttpFoundation\File\File $imageFile = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private ?string $title = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private ?string $description = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $year;
+    private ?int $year = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $author_last;
+    private ?string $author_last = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $publisher;
+    private ?string $publisher = null;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private \DateTime|\DateTimeInterface $created_at;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $author_first;
+    private ?string $author_first = null;
 
     /**
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="books")
      */
-    private $genres;
+    private \Doctrine\Common\Collections\Collection|array $genres;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updated_at;
+    private \DateTime|\DateTimeInterface|null $updated_at = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $collection;
+    private ?string $collection = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $volume;
+    private ?int $volume = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $city;
+    private ?string $city = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $storage;
+    private ?string $storage = null;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      */
-    private $isbn;
+    private ?int $isbn = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $lendedto;
+    private ?string $lendedto = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books")
      */
-    private $user;
+    private ?\App\Entity\User $user = null;
 
     public function __construct()
     {
@@ -253,18 +251,11 @@ class Book
         return $this;
     }
 
-    /**
-     * @return File|null
-     */
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
-    /**
-     * @param File|null $imageFile
-     * @return Book
-     */
     public function setImageFile(?File $imageFile): Book
     {
         $this->imageFile = $imageFile;
@@ -274,18 +265,11 @@ class Book
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFilename(): ?string
     {
         return $this->filename;
     }
 
-    /**
-     * @param string|null $filename
-     * @return Book
-     */
     public function setFilename(?string $filename): Book
     {
         $this->filename = $filename;

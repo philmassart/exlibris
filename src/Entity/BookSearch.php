@@ -16,22 +16,19 @@ class BookSearch
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    private $author_last;
+    private ?string $author_last = null;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    private $title;
+    private ?string $title = null;
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    private $storage;
+    private ?string $storage = null;
 
 
-    /**
-     * @var ArrayCollection
-     */
-    private $genres;
+    private \Doctrine\Common\Collections\ArrayCollection $genres;
 
 
 //    /**
@@ -50,32 +47,22 @@ class BookSearch
         $this->genres = new ArrayCollection();
     }
 
-    /**
-     * @return ArrayCollection
-     */
     public function getGenres(): ArrayCollection
     {
         return $this->genres;
     }
 
-    /**
-     * @param ArrayCollection $genres
-     */
     public function setGenres(ArrayCollection $genres): void
     {
         $this->genres = $genres;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthorlast(): ?string
     {
         return $this->author_last;
     }
 
     /**
-     * @param string|null $author_last
      * @return $this
      */
     public function setAuthorlast(?string $author_last): self
@@ -85,16 +72,12 @@ class BookSearch
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * @param string|null $title
      * @return $this
      */
     public function setTitle(?string $title): self
@@ -105,16 +88,12 @@ class BookSearch
     }
 
 
-    /**
-     * @return string|null
-     */
     public function getStorage(): ?string
     {
         return $this->storage;
     }
 
     /**
-     * @param string|null $storage
      * @return $this
      */
     public function setStorage(?string $storage): self

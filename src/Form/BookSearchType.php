@@ -25,9 +25,7 @@ class BookSearchType extends AbstractType
                 'class' => Genre::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'query_builder' => function (GenreRepository $genreRepository) {
-                    return $genreRepository->myFindAllBuilder();
-                }
+                'query_builder' => fn(GenreRepository $genreRepository) => $genreRepository->myFindAllBuilder()
             ])
             ->add('author_last', TextType::class, [
                 'required' => false,

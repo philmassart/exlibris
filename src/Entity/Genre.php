@@ -22,12 +22,12 @@ class Genre
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name = null;
 
     /**
      * @ORM\ManyToMany(targetEntity=Book::class, mappedBy="genres")
      */
-    private $books;
+    private \Doctrine\Common\Collections\Collection|array $books;
 
     public function __construct()
     {

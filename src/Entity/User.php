@@ -23,22 +23,22 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $username;
+    private ?string $username = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
+    private ?string $password = null;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity=Book::class, mappedBy="user")
      */
-    private $books;
+    private \Doctrine\Common\Collections\Collection|array $books;
 
     public function __construct()
     {
@@ -104,11 +104,7 @@ class User implements UserInterface, \Serializable
 
     public function unserialize($serialized)
     {
-        list (
-            $this->id,
-            $this->username,
-            $this->password
-            ) = unserialize($serialized,['allowed_classes' => false]);
+        [$this->id, $this->username, $this->password] = unserialize($serialized,['allowed_classes' => false]);
     }
 
     /**

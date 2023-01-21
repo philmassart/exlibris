@@ -39,9 +39,7 @@ class BookType extends AbstractType
                 'label' => "form.genre",
                 'multiple' => true,
                 'required' => false,
-                'query_builder' => function (GenreRepository $genreRepository) {
-                    return $genreRepository->myFindAllBuilder();
-                }
+                'query_builder' => fn(GenreRepository $genreRepository) => $genreRepository->myFindAllBuilder()
             ])
             ->add('imageFile', FileType::class,[
                 'required' => false,
