@@ -25,3 +25,5 @@ composer
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+
+rector.php
